@@ -1,0 +1,113 @@
+<div class="container-fluid" *ngIf="town">
+	<div class="card" style="width: 100%;">
+		<div class="card-header">
+			<h5>{{ title }}</h5>
+		</div>
+		<div class="card-body">
+			<div class="message success" *ngIf="status == 'success'">
+				Los datos se han guardado correctamente. Puedes verlos<a [routerLink]="['/detail',save_town._id]">aquí</a>
+			</div>
+			<div class="message failed" *ngIf="status == 'failed'">
+				No se han podido guardar los datos, revise los campos por favor.
+			</div>
+		</div>
+		<div class="card-body">
+			<form #townForm="ngForm" (ngSubmit)="onSubmit(townForm)">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="codeINE">Código INE</label>
+						<input class="form-control" type="text" name="codeINE" #codeINE="ngModel" [(ngModel)]="town.codeINE" 
+						required />
+						<span class="form_error" *ngIf="codeINE.touched && !codeINE.valid">
+							El código INE es obligatorio
+						</span>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="name">Población</label>
+						<input class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="town.name" 
+						required />
+						<span class="form_error" *ngIf="name.touched && !name.valid">
+							El nombre es obligatorio
+						</span>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="province">Provincia</label>
+						<select class="form-control" name="province" #province="ngModel" [(ngModel)]="town.province">
+					      <option value="Almería">Almería</option>
+					      <option value="Cádiz">Cádiz</option>
+					      <option value="Córdoba">Córdoba</option>
+					      <option value="Granada">Granada</option>
+					      <option value="Huelva">Huelva</option>
+					      <option value="Jaén">Jaén</option>
+					      <option value="Málaga">Málaga</option>
+					      <option value="Sevilla">Sevilla</option>
+					    </select>
+					    <!--
+						<input class="form-control" type="text" name="province" #province="ngModel" [(ngModel)]="town.province" 
+						required />
+						<span class="form_error" *ngIf="province.touched && !province.valid">
+							La provincia es obligatoria
+						</span>
+						-->
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="lalitude">Latitud</label>
+						<input class="form-control" type="text" name="lalitude" #lalitude="ngModel" [(ngModel)]="town.latitude" 
+						required />
+						<span class="form_error" *ngIf="lalitude.touched && !lalitude.valid">
+							La latitud es obligatoria
+						</span>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="longitude">Longitud</label>
+						<input class="form-control" type="text" name="longitude" #longitude="ngModel" [(ngModel)]="town.longitude" 
+						required />
+						<span class="form_error" *ngIf="longitude.touched && !longitude.valid">
+							La longitud es obligatoria
+						</span>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="altitude">Altitud (m)</label>
+						<input class="form-control" type="text" name="altitude" #altitude="ngModel" [(ngModel)]="town.altitude" 
+						required />
+						<span class="form_error" *ngIf="altitude.touched && !altitude.valid">
+							La altitud es obligatoria
+						</span>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="area">Superficie (Km2)</label>
+						<input class="form-control" type="text" name="area" #area="ngModel" [(ngModel)]="town.area" 
+						required />
+						<span class="form_error" *ngIf="area.touched && !area.valid">
+							La superficie es obligatoria
+						</span>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="population">Habitantes</label>
+						<input class="form-control" type="text" name="population" #population="ngModel" [(ngModel)]="town.population" 
+						required />
+						<span class="form_error" *ngIf="population.touched && !population.valid">
+							El número de habitantes es obligatorio
+						</span>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="year">Año Recuento</label>
+						<input class="form-control" type="text" name="year" #year="ngModel" [(ngModel)]="town.year" />
+					</div>
+				</div>
+
+				<span><input class="btn btn-primary" type="submit" value="Enviar" [disabled]="!townForm.form.valid" /></span>
+				&nbsp;
+				<span><a [routerLink]="['/towns']" class="btn btn-danger">Cancelar</a></span>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    Provincia de : {{ town.province }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ town.name }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Latitud : {{ town.latitude }}</li>
+    <li class="list-group-item">Longitud : {{ town.longitude}}</li>
+    <li class="list-group-item">Altitud : {{ town.altitude }} mts</li>
+    <li class="list-group-item">Superficie : {{ town.area }} Kms2</li>
+    <li class="list-group-item">Población : {{ town.population }} (Datos de {{ town.year }})</li>
+  </ul>
+  <div class="card-body" *ngIf="confirm == false">
+    <span><a [routerLink]="['/update',town._id]" class="btn btn-primary btn-sm">Editar</a></span>
+    &nbsp;
+    <span><a (click)="setConfirm(true)" class="btn btn-danger btn-sm">Eliminar</a></span>
+    &nbsp;
+    <span><a [routerLink]="['/towns']" class="btn btn-info btn-sm">Volver al Listado</a></span>
+  </div>
+  <div class="card-body" *ngIf="confirm == true">
+    <span class="confirm">¿Seguro que quieres eliminar este proyecto?</span><br/>
+    <a (click)="setConfirm(false)" class="btn btn-danger btn-sm">Cancelar</a>
+    <a (click)="deleteTown(town._id)" class="btn btn-primary btn-sm">Eliminar Definitivamente</a>
+  </div>
+</div>
